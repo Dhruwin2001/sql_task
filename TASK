@@ -1,0 +1,45 @@
+create database assessment 
+use assessment
+
+TASK-1
+
+create table task2(
+Id int,
+score decimal(6,2))
+
+insert into  task2 values(1,100.00),
+(2,99.86),
+(3,90.00),
+(4,89.90),
+(5,90.01),
+(6,90.00)
+
+select * from task2
+
+SELECT score, DENSE_RANK() OVER (ORDER BY Score DESC) AS 'Rank'
+FROM task2 
+--------------------------------------------------------------------------------------
+
+TASK-2
+
+
+create table orders(
+order_number int,
+customer_number int,
+order_date date,
+required_date date,
+shipped_date date,
+status char(15),
+comment char(200))
+
+insert into orders (order_number,customer_number,order_date,required_date,shipped_date,status) values
+(1,1,'2017-04-09','2017-04-13', '2017-04-12','Closed'),
+( 2 ,2 , '2017-04-15', '2017-04-20' , '2017-04-18', 'Closed'),
+( 3, 3, '2017-04-16' , '2017-04-25' , '2017-04-20' , 'Closed'),
+( 4 , 3 ,' 2017-04-18 ', '2017-04-28' , '2017-04-25', 'Closed');
+
+select * from orders 
+
+select customer_number from orders 
+group by 1
+order by count(distinct order_number) desc limit 1;
